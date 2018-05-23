@@ -1,0 +1,60 @@
+
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src = "script.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene">
+        <a-asset>
+        <img id = "background" src = "lab.jpg">
+        </a-asset>
+
+        <a-text visible = false id = "hello" value = "Hi, my name is _____" color = "red" position = "3.5 2 -2"></a-text>
+
+        <!-- ORIGIN REFERENCE POINT -->
+        <a-box color="green" width = ".05" height = "10" depth = ".05"></a-box>
+        <a-box color="red" width = "10" height = ".05" depth = ".05"></a-box>
+        <a-box color="blue" width = ".05" height = ".05" depth = "10"></a-box>
+
+        <!-- Robot's reference point is at the origin...  -->
+        <a-entity id="wholeRobot" position="0 0 0" scale="1 1 1">
+
+            <!-- ...but all the parts of the robot are drawn away from the origin (at approximatly 2 2 -2) -->
+            <a-box id = "face" color = "grey" position = "2 2 -2" width = "2" height = "2" depth = "2"></a-box>
+            <a-box id = "antenna1" color = "#A9A9A9" position = "1.5 3 -2" width = ".3" height = "1" depth = ".3" rotation = " 0 0 20">
+                <a-animation attribute="rotation" begin="moveAntenna1" to="0 0 0" direction="alternate"></a-animation>
+                <a-animation attribute="color" begin="moveAntenna1" from = "#A9A9A9" to="purple" direction="alternate"></a-animation>
+            </a-box>
+            <a-box id = "antenna2" color = "#A9A9A9" position = "2.5 3 -2" width = ".3" height = "1" depth = ".3" rotation = " 0 0 -20">
+              <a-animation attribute="rotation" begin="moveAntenna2" to="0 0 0" direction="alternate"></a-animation>
+              <a-animation attribute="color" begin="moveAntenna2" from = "#A9A9A9" to="purple" direction="alternate"></a-animation>
+            </a-box>s
+
+            <a-sphere id = "leftEye" color = "dodgerblue" position = "1.5 2.5 -1" radius = ".3"></a-sphere>
+            <a-sphere id = "leftPupil" color = "black" position = "1.5 2.5 -.7" radius = ".1"></a-sphere>
+            <a-sphere id = "rightEye" color = "dodgerblue" position = "2.5 2.5 -1" radius = ".3"></a-sphere>
+            <a-sphere id = "rightPupil" color = "black" position = "2.5 2.5 -.7" radius = ".1"></a-sphere>
+
+            <a-box id = "mouth" color ="white" width = "1.5" height = ".3" depth = ".4" position = "2 1.5 -1"></a-box>
+
+            <!-- This is what increases the scale of the robot afer hearing "emit" from the javascript code-->
+        <a-animation attribute="scale" begin="scaleRobot" to="2 2 2" direction="alternate"></a-animation>
+        </a-entity>
+
+        <a-box id="greenBox" color ="green" depth=".5" width="3" height="3" position="-10 5 -10" rotation="-90 0 0"></a-box>
+
+        <a-sphere id = "redSphere" color = "red" position = "0 6 -6" radius = "1"></a-sphere>
+
+        <!-- <a-container id="container"></a-container> -->
+
+    <a-sky src = "#background"></a-sky>
+
+    <a-entity position="3 2 4" rotation="0 45 0">
+      <a-camera>
+          <a-cursor></a-cursor>
+      </a-camera>
+    </a-entity>
+    </a-scene>
+  </body>
+</html>
